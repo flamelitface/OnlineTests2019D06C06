@@ -1,5 +1,7 @@
 package com.acquisio.basic.java.question01;
 
+import org.springframework.util.StringUtils;
+
 /**
  * QUESTION 01: FooBar
  * You have a program that loop from 1 to 50.
@@ -20,7 +22,23 @@ public class FooBar {
     }
 
     String fooBar(int value) {
-        // TODO: Insert your code here
-        return null;
+        if (value > 50 || value < 1) {
+            throw new IllegalArgumentException("This function only accepts an int between 1 and 50 inclusively");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (value % 3 == 0) {
+            sb.append("Foo");
+        }
+        if (value % 5 == 0) {
+            sb.append("Bar");
+        }
+
+        String result = sb.toString();
+
+        if(StringUtils.isEmpty(result))
+            return String.valueOf(value);
+
+        return result;
     }
 }
