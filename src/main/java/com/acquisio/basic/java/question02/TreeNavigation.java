@@ -19,6 +19,8 @@ package com.acquisio.basic.java.question02;
  */
 public class TreeNavigation {
 
+    private final String depthIndicator = "..";
+
     public static void main(String[] args) {
         TreeNavigation main = new TreeNavigation();
         main.treeNode();
@@ -30,6 +32,29 @@ public class TreeNavigation {
         Node n3 = new Node("9", new Node("4"));
         Node n4 = new Node("5", null, n3);
         Node n = new Node("2", n2, n4);
-        // TODO: Implement code here
+
+        System.out.println(printTreeNodes(n));
+    }
+
+    public String printTreeNodes(Node node) {
+        return printTreeNodes(new StringBuilder(), 1, node);
+    }
+
+    private String printTreeNodes(StringBuilder sb, int depth, Node node) {
+
+        for (int i = 0; i < depth; i++) {
+            sb.append(depthIndicator);
+        }
+        sb.append(node.name);
+        sb.append(System.lineSeparator());
+
+        if(node.children != null && node.children.length > 0) {
+            for (Node child : node.children) {
+                if(child != null) {
+                    printTreeNodes(sb, depth + 1, child);
+                }
+            }
+        }
+        return sb.toString();
     }
 }
