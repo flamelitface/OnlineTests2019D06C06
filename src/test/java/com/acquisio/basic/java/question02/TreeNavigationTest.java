@@ -11,14 +11,14 @@ public class TreeNavigationTest {
 
     private TreeNavigation treeNavigation = new TreeNavigation();
 
-    private String result = "..2"+ System.lineSeparator() +
-            "....7"+ System.lineSeparator() +
-            "......2"+ System.lineSeparator() +
-            "......6"+ System.lineSeparator() +
-            "........5"+ System.lineSeparator() +
-            "........11"+ System.lineSeparator() +
-            "....5"+ System.lineSeparator() +
-            "......9"+ System.lineSeparator() +
+    private String result = "..2" + System.lineSeparator() +
+            "....7" + System.lineSeparator() +
+            "......2" + System.lineSeparator() +
+            "......6" + System.lineSeparator() +
+            "........5" + System.lineSeparator() +
+            "........11" + System.lineSeparator() +
+            "....5" + System.lineSeparator() +
+            "......9" + System.lineSeparator() +
             "........4" + System.lineSeparator();
 
     @Before
@@ -31,7 +31,7 @@ public class TreeNavigationTest {
     }
 
     @Test
-    public void printTreeNodes() {
+    public void printTreeNodes_returnsCorrectValue_whenPassedBinaryTree() {
         assertEquals(result, treeNavigation.printTreeNodes(rootNode));
     }
 }

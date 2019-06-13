@@ -48,11 +48,9 @@ public class TreeNavigation {
         sb.append(node.name);
         sb.append(System.lineSeparator());
 
-        if(node.children != null && node.children.length > 0) {
-            for (Node child : node.children) {
-                if(child != null) {
-                    printTreeNodes(sb, depth + 1, child);
-                }
+        for (Node child : node.children) {
+            if (child != null) {
+                printTreeNodes(sb, depth + 1, child);
             }
         }
         return sb.toString();
