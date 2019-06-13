@@ -15,16 +15,18 @@ package com.acquisio.basic.java.question04;
 public class Generics {
     public static void main(String[] args) {
         Generics instance = new Generics();
-        instance.stockInventory();
+        System.out.println(instance.getStockInventory());
     }
 
-    void stockInventory() {
+    String getStockInventory() {
+        StringBuilder sb = new StringBuilder();
         Inventory<Fruit> fruitInventory = getFruitInventory();
         Fruit apple = fruitInventory.findFirst("Apple");
-        System.out.println(String.format("Apple [%s] : %d units", apple.getColor(), apple.getQuantity()));
+        sb.append(String.format("Apple [%s] : %d units", apple.getColor(), apple.getQuantity()) + System.lineSeparator());
         Inventory<Vegetable> vegetableInventory = getVegetableInventory();
         Vegetable salad = vegetableInventory.findFirst("Salad");
-        System.out.println(String.format("Salad [%s] : %d units", salad.getType(), salad.getQuantity()));
+        sb.append(String.format("Salad [%s] : %d units", salad.getType(), salad.getQuantity()));
+        return sb.toString();
     }
 
     private Inventory<Vegetable> getVegetableInventory() {
