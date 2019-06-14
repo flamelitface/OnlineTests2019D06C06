@@ -19,8 +19,9 @@ public class RefactoringTest {
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 30, 10);
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 30, 0);
         Item standardItem = new Item("standardItem", 30, 10);
+        Item conjuredItem = new Item("Conjured", 30, 10);
 
-        standardItemList = new Item[]{agedBrie, sulfuras, backstagePasses, standardItem};
+        standardItemList = new Item[]{agedBrie, sulfuras, backstagePasses, standardItem, conjuredItem};
     }
 
     @Test
@@ -116,6 +117,26 @@ public class RefactoringTest {
 
         assertEquals(expectedQuality, standardItemList[3].quality);
         assertEquals(expectedSellIn, standardItemList[3].sellIn);
+    }
+
+    @Test
+    @Parameters({
+            "1, 8, 29",
+            "3, 4, 27",
+            "20, 0, 10",
+            "25, 0, 5",
+            "28, 0, 2",
+            "29, 0, 1",
+            "30, 0, 0",
+            "31, 0, -1"
+    })
+    public void testUpdateQualityForConjuredItem(int iterations, int expectedQuality, int expectedSellIn) {
+        Refactoring app = new Refactoring(standardItemList);
+
+        updateQuality(app, iterations);
+
+        assertEquals(expectedQuality, standardItemList[4].quality);
+        assertEquals(expectedSellIn, standardItemList[4].sellIn);
     }
 
     private void updateQuality(Refactoring app, int iterations) {

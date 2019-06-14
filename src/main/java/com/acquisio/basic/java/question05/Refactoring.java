@@ -107,6 +107,7 @@ public class Refactoring {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    public static final String CONJURED = "Conjured";
     Item[] items;
 
     public Refactoring(Item[] items) {
@@ -127,8 +128,10 @@ public class Refactoring {
                 adjustBackstagePassesQuality(item);
             } else if (AGED_BRIE.equals(item.name)) {
                 adjustAgedBrieQuality(item);
+            } else if (CONJURED.equals(item.name)) {
+                decayItemQuality(item, 2);
             } else {
-                adjustNormalItemQuality(item);
+                decayItemQuality(item, 1);
             }
 
             if (item.quality > 50) {
@@ -158,14 +161,14 @@ public class Refactoring {
         }
     }
 
-    private void adjustNormalItemQuality(Item item) {
+    private void decayItemQuality(Item item, int decrementNumber) {
         if (item.quality > 0) {
-            item.quality = item.quality - 1;
+            item.quality = item.quality - decrementNumber;
         }
 
         if (item.sellIn < 0) {
             if (item.quality > 0) {
-                item.quality--;
+                item.quality = item.quality - decrementNumber;
             }
         }
     }
