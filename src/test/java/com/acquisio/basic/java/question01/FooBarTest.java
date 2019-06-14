@@ -25,7 +25,6 @@ public class FooBarTest {
             "50, Bar, false",
             "10000, null, true"
     })
-
     public void testFooBar(int value, String expectedResult, boolean expectedException) {
         try {
             assertEquals(expectedResult, new FooBar().fooBar(value));
