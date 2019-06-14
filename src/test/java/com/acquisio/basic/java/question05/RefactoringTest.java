@@ -52,12 +52,12 @@ public class RefactoringTest {
 
     @Test
     @Parameters({
-            "1, 10, 30",
-            "3, 10, 30",
-            "20, 10, 30",
-            "25, 10, 30",
-            "28, 10, 30",
-            "38, 10, 30"
+            "1, 80, 30",
+            "3, 80, 30",
+            "20, 80, 30",
+            "25, 80, 30",
+            "28, 80, 30",
+            "38, 80, 30"
     })
     public void testUpdateQualityForSulfuras(int iterations, int expectedQuality, int expectedSellIn) {
         Refactoring app = new Refactoring(standardItemList);

@@ -119,6 +119,7 @@ public class Refactoring {
         for (Item item : items) {
 
             if (SULFURAS.equals(item.name)) {
+                item.quality = 80;
                 continue;
             }
 
