@@ -2,14 +2,14 @@ package com.acquisio.basic.java.question05;
 
 /**
  * QUESTION 6: Refactoring
- *
- *
+ * <p>
+ * <p>
  * ======================================
  * Requirements Specification (en)
  * ======================================
  * **********
  * IMPORTANT: We will look at how you refactored this code to achieve the result.
- *            The goal of this question is to see your skill to refactor code.
+ * The goal of this question is to see your skill to refactor code.
  * **********
  * <p>
  * Hi and welcome to the team. As you know, we are a small inn with a prime location in a
@@ -104,6 +104,9 @@ package com.acquisio.basic.java.question05;
  * IMPORTANT: Ajouter toute la javadoc et les test unitaires que vous jugez nécessaire.
  */
 public class Refactoring {
+    public static final String AGED_BRIE = "Aged Brie";
+    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     Item[] items;
 
     public Refactoring(Item[] items) {
@@ -111,54 +114,58 @@ public class Refactoring {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
+
+        for (Item item : items) {
+
+            if (SULFURAS.equals(item.name)) {
+                continue;
+            }
+
+            item.sellIn = item.sellIn - 1;
+
+            if (BACKSTAGE_PASSES.equals(item.name)) {
+                adjustBackstagePassesQuality(item);
+            } else if (AGED_BRIE.equals(item.name)) {
+                adjustAgedBrieQuality(item);
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
+                adjustNormalItemQuality(item);
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
+            if (item.quality > 50) {
+                item.quality = 50;
             }
+        }
+    }
 
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
+    private void adjustBackstagePassesQuality(Item item) {
+        if (item.sellIn < 10) {
+            item.quality++;
+        }
+        if (item.sellIn < 5) {
+            item.quality++;
+        }
+        item.quality++;
+
+        if (item.sellIn < 0) {
+            item.quality = 0;
+        }
+    }
+
+    private void adjustAgedBrieQuality(Item item) {
+        item.quality++;
+        if (item.sellIn < 0) {
+            item.quality++;
+        }
+    }
+
+    private void adjustNormalItemQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+
+        if (item.sellIn < 0) {
+            if (item.quality > 0) {
+                item.quality--;
             }
         }
     }
