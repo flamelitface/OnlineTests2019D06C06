@@ -22,6 +22,6 @@ public class Debugging {
     Integer[] removeEvenNumbers(Integer ... values) {
         List<Integer> integers = new ArrayList<>(Arrays.asList(values));
         integers.removeIf(i -> i % 2 == 0);
-        return integers.toArray(new Integer[integers.size()]);
+        return integers.toArray(new Integer[0]);
     }
 }
