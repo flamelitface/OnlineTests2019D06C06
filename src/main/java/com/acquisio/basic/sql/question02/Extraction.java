@@ -41,20 +41,13 @@ public class Extraction {
 
     private void printNumberOfEmployeesPerProject() throws SQLException {
         try (Connection conn = H2DBUtil.getConnection()) {
-            // Start : For consultation only, can be removed
-//            H2DBUtil.displayTableRows(conn, "projects");
-//            H2DBUtil.displayTableRows(conn, "departments");
-//            H2DBUtil.displayTableRows(conn, "employees");
-//            H2DBUtil.displayTableRows(conn, "employees_projects");
-            // End : For consultation only, can be removed
-
-            // TODO: Insert query here
-            // See requirement in this class javadoc
-            String query = "select 1 as dummyValue from dual";
+            String query = "select first_name as \"FirstName\", last_name as \"LastName\", name as \"DepartmentName\" from employees e " +
+                    "INNER JOIN departments d " +
+                    "ON e.department_id = d.id " +
+                    "where e.id NOT IN (SELECT employee_id FROM employees_projects)";
             
             ResultSet resultSet = conn.createStatement().executeQuery(query);
             H2DBUtil.displayResultSet(resultSet);
-
         }
     }
 }
