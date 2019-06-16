@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
@@ -37,7 +35,7 @@ public class EmployeeController {
                 .setLastName(employee.getLastName())
                 .setEmail(employee.getEmail())
                 .setSalary(employee.getSalary())
-                .setUrl(generateGravatarUrl(employee.getEmail()))
+                .setAvatarUrl(generateGravatarUrl(employee.getEmail()))
                 .build();
     }
 

@@ -1,7 +1,5 @@
 package com.acquisio.app.dto;
 
-import com.acquisio.app.domain.Employee;
-
 public class EmployeeDTO {
 
     private Long id;
@@ -9,8 +7,7 @@ public class EmployeeDTO {
     private String lastName;
     private String email;
     private int salary;
-
-    private String url;
+    private String avatarUrl;
 
     public EmployeeDTO(String firstName, String lastName, String email, int salary) {
         this.firstName = firstName;
@@ -59,12 +56,12 @@ public class EmployeeDTO {
         this.email = email;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public static EmployeeDTOBuilder builder() {
@@ -78,7 +75,7 @@ public class EmployeeDTO {
         private String lastName;
         private String email;
         private int salary;
-        private String url;
+        private String avatarUrl;
 
         public EmployeeDTOBuilder setId(Long id) {
             this.id = id;
@@ -105,18 +102,16 @@ public class EmployeeDTO {
             return this;
         }
 
-        public EmployeeDTOBuilder setUrl(String url) {
-            this.url = url;
+        public EmployeeDTOBuilder setAvatarUrl(String avatarUrl) {
+            this.avatarUrl = avatarUrl;
             return this;
         }
 
         public EmployeeDTO build() {
             EmployeeDTO employeeDTO = new EmployeeDTO(this.firstName, this.lastName, this.email, this.salary);
             employeeDTO.setId(this.id);
-            employeeDTO.setUrl(this.url);
+            employeeDTO.setAvatarUrl(this.avatarUrl);
             return employeeDTO;
         }
-
-
     }
 }
